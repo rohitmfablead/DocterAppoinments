@@ -1,21 +1,32 @@
-import { StyleSheet, View } from 'react-native';
-import React from 'react';
+// In App.js in a new project
+
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from './src/screens/SplashScreen';
 import LandingScreen from './src/screens/LandingScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
 
-const App = () => {
+const Stack = createNativeStackNavigator();
+
+function RootStack() {
   return (
-    <View style={styles.container}>
-      <LandingScreen />
-    </View>
+    <Stack.Navigator screenOptions={{
+      headerShown:false
+    }}>
+      <Stack.Screen name="splash" component={SplashScreen} />
+      <Stack.Screen name="landing" component={LandingScreen} />
+      <Stack.Screen name="login" component={LoginScreen} />
+    </Stack.Navigator>
   );
-};
+}
 
-export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+  );
+}

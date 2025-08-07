@@ -10,40 +10,40 @@ import {
 } from 'react-native';
 import fonts from '../utils/fonts';
 import colors from '../utils/colors';
+import { DOCTERS1, DOCTERS2, DOCTERS3 } from '../assets/images';
 const { width } = Dimensions.get('window');
 const DATA = [
   {
-    image: 'https://images.pexels.com/photos/5722160/pexels-photo-5722160.jpeg',
+    image: DOCTERS1,
     title: 'Meet Doctors Online',
     subtitle:
       'Connect with specialized doctors online for convenient and comprehensive medical consultations.',
   },
   {
-    image:
-      'https://images.pexels.com/photos/14438789/pexels-photo-14438789.jpeg',
+    image: DOCTERS2,
     title: 'Track Health Easily',
     subtitle: 'Monitor your health vitals and reports in one place.',
   },
   {
-    image: 'https://images.pexels.com/photos/5206923/pexels-photo-5206923.jpeg',
+    image: DOCTERS3,
     title: 'Book Appointments',
     subtitle: 'Schedule your appointments with just a few taps.',
   },
 ];
 
-export default function LandingScreen() {
+export default function LandingScreen({ navigation }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
     if (currentIndex < DATA.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      // Navigate to login or home screen
+      navigation.navigate('login');
     }
   };
 
   const handleSkip = () => {
-    // Navigate to login or home screen
+    navigation.navigate('login');
   };
 
   const item = DATA[currentIndex];
@@ -55,17 +55,12 @@ export default function LandingScreen() {
         backgroundColor="transparent"
         barStyle="dark-content"
       />
-      <Image
-        source={{ uri: item.image }}
-        style={styles.image}
-        resizeMode="cover"
-      />
+      <Image source={item.image} style={styles.image} resizeMode="cover" />
 
       <View style={styles.bottomSheet}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.subtitle}>{item.subtitle}</Text>
 
-        {/* Dots */}
         <View style={styles.dotContainer}>
           {DATA.map((_, idx) => (
             <View
