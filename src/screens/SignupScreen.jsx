@@ -10,13 +10,14 @@ import {
 } from 'react-native';
 import BaseLayout from '../components/BaseLayout';
 import { DOCTERS1 } from '../assets/images';
-import { email, Facebook, google, lock, Vector } from '../assets/icons';
+import { email, Facebook, google, lock, user, Vector } from '../assets/icons';
 import CustomImage from '../components/CustomImage';
 import colors from '../utils/colors';
 import BaseTextInput from '../components/BaseTextInput';
 import fonts from '../utils/fonts';
+import BaseButton from '../components/BaseButton';
 
-const LoginScreen = ({navigation}) => {
+const SignupScreen = ({navigation}) => {
   return (
     <BaseLayout>
       <ScrollView contentContainerStyle={styles.container}>
@@ -28,10 +29,15 @@ const LoginScreen = ({navigation}) => {
 
         {/* Welcome Text */}
         <View style={styles.welcomeContainer}>
-          <Text style={styles.welcome}>Hi, Welcome Back!</Text>
-          <Text style={styles.subtext}>Hope you're doing fine.</Text>
+          <Text style={styles.welcome}>Create Account</Text>
+          <Text style={styles.subtext}>We are here to help you!</Text>
         </View>
 
+        <BaseTextInput
+          icon={user}
+          placeholder="Your Name"
+          keyboardType="email-address"
+        />
         <BaseTextInput
           icon={email}
           placeholder="Your Email"
@@ -45,9 +51,14 @@ const LoginScreen = ({navigation}) => {
         />
 
         {/* Sign In Button */}
-        <TouchableOpacity style={styles.signInButton}>
-          <Text style={styles.signInText}>Sign In</Text>
-        </TouchableOpacity>
+        <BaseButton
+          title="Create Account"
+          onPress={()=>navigation.navigate("Signup1")}
+          //   loading={isSubmitting}
+          backgroundColor="#000"
+          textColor="#fff"
+        />
+       
 
         {/* OR Separator */}
         <View
@@ -87,16 +98,11 @@ const LoginScreen = ({navigation}) => {
           <Text style={styles.socialText}>Sign in with Facebook</Text>
         </TouchableOpacity>
 
-        {/* Forgot Password */}
-        <TouchableOpacity>
-          <Text style={styles.forgotText}>Forgot password?</Text>
-        </TouchableOpacity>
-
         {/* Sign Up Link */}
         <View style={styles.signupContainer}>
-          <Text style={styles.signupText}>Don't have an account yet? </Text>
-          <TouchableOpacity onPress={()=>navigation.navigate("Signup")}>
-            <Text style={styles.signupLink}>Sign up</Text>
+          <Text style={styles.signupText}>Do you have an account?</Text>
+          <TouchableOpacity>
+            <Text style={styles.signupLink}> Sign In</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -192,23 +198,23 @@ const styles = StyleSheet.create({
     // marginTop: 12,
     fontSize: 14,
     textAlign: 'center',
-    fontFamily:fonts.REGULAR
+    fontFamily: fonts.REGULAR,
   },
   signupContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 20,
+    // marginTop: 20,
   },
   signupText: {
     color: '#555',
     fontSize: 14,
-    fontFamily:fonts.REGULAR
+    fontFamily: fonts.REGULAR,
   },
   signupLink: {
     color: '#1E90FF',
     fontSize: 14,
-    fontFamily:fonts.BOLD
+    fontFamily: fonts.BOLD,
   },
 });
 
-export default LoginScreen;
+export default SignupScreen;
